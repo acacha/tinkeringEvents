@@ -40,7 +40,7 @@ class ExampleTest extends TestCase
         event(new Registered($user));
 
         Mail::assertSent(WelcomeEmailMarkdown::class,function($mail) use ($user)  {
-            return $mail->user->name ===  $user->name;
+            return ($mail->user->name ===  $user->name) && ($mail->user->email ===  $user->email);
         });
     }
 

@@ -44,6 +44,20 @@ class ExampleTest extends TestCase
         });
     }
 
+        /**
+     *
+     */
+    public function testRegisterUserSendWelcomeEmail2()
+    {
+        Event::fake();
+
+        $this->get('/registerUser');
+
+        Event::assertDispatched(Registered::class,function($event)  {
+            return $event->user->name === 'Pepito Palotes';
+        });
+    }
+
 //    /**
 //     *
 //     */

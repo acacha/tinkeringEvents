@@ -11,7 +11,7 @@ class WelcomeEmailMarkdown extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
+    public $user;
 
     /**
      * WelcomeEmailMarkdown constructor.

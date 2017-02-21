@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
+use Log;
 
 class RegisterUserController extends Controller
 {
 
     public function register()
     {
-        $user = new \App\User();
+        $user = User::find(1);
+//        $user = new \App\User();
 
-        $user->name = 'Pepito Palotes';
-        $user->email = 'sergiturbadenas@gmail.com';
+//        $user->name = 'prova';
+//        $user->email = 'prova@gmail.com';
 
+        Log::info('Before event');
+        \Debugbar::startMeasure('render','Time for sending email');
         event(new Registered($user));
-        dump("Done!");
+        \Debugbar::stopMeasure('render');
+        Log::info('After event');
+        return view('mails.welcome');
     }
 }

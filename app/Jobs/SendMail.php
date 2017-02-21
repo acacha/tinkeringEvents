@@ -2,11 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Events\EmailSent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Log;
 
 class SendMail implements ShouldQueue
 {
@@ -29,7 +31,8 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        sleep(10);
+        Log::error("Provant!");
+        sleep(1);
         dump("Enviant email");
         event(new EmailSent());
     }
